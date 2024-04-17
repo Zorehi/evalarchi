@@ -2,19 +2,21 @@ package fr.polytech.model;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-@Entity(name = "ARTICLE")
+@Entity
+@Table(name = "ARTICLE")
 public class ArticleBean implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Integer id;
+    @Column(name = "NAME")
     private String name;
+    @Column(name = "PRICE")
     private Float price;
+    @Column(name = "NB_RESTANT")
     private Integer nbRestant;
 
     public Integer getId() {

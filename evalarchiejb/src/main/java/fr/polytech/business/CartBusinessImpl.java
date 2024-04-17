@@ -3,16 +3,15 @@ package fr.polytech.business;
 import fr.polytech.dao.ArticleDAO;
 import fr.polytech.model.ArticleBean;
 import fr.polytech.model.CartBean;
+import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
 
 import java.util.Map;
-import java.util.Objects;
 
+@Stateless
 public class CartBusinessImpl implements CartBusiness {
-    private final ArticleDAO articleDAO;
-
-    public CartBusinessImpl(ArticleDAO articleDAO) {
-        this.articleDAO = articleDAO;
-    }
+    @Inject
+    private ArticleDAO articleDAO;
 
     public double computePrice(CartBean cart){
         double prixTotal = 0.0;

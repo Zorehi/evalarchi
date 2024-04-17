@@ -12,7 +12,7 @@ import java.util.List;
 @Stateless
 public class UserDAOImpl implements UserDAO {
 
-    @PersistenceContext(unitName = "GestionNotes")
+    @PersistenceContext(unitName = "Evalarchi")
     private EntityManager em;
 
     @Override

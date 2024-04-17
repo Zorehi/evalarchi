@@ -14,7 +14,9 @@ public class UserBean implements Serializable {
     @Id
     @Column(name = "LOGIN")
     private String login;
+    @Column(name = "NAME")
     private String name;
+    @Column(name = "PASSWORD")
     private String password;
 
     public String getLogin() {

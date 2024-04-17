@@ -12,7 +12,7 @@ import java.util.List;
 public class ArticleDAOImpl implements ArticleDAO {
 
     // L'objet EntityManager qui va permettre d'effectuer les requêtes en BDD.
-    @PersistenceContext(unitName = "GestionArticle")
+    @PersistenceContext(unitName = "Evalarchi")
     private EntityManager em;
 
     @Override
