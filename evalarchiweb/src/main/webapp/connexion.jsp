@@ -6,6 +6,9 @@
 </head>
 <body>
   <form action="connexion" method="post">
+    <c:if test="${requestScope.FAILED}">
+      <div style="color: red">Le nom d'utilisateur ou le mot de passe saisit n'est pas valide.</div>
+    </c:if>
     <div>
       <label>Login</label>
       <input type="text" name="login">
