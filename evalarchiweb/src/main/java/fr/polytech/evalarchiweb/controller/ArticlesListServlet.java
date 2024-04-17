@@ -1,4 +1,4 @@
-package fr.polytech.Servlet;
+package fr.polytech.evalarchiweb.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,16 +8,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name="Cart", urlPatterns = {"/Cart"})
-public class CartServlet extends HttpServlet {
-
+@WebServlet(name="ListArticles", urlPatterns = {"/listarticles"})
+public class ArticlesListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        req.getRequestDispatcher("listarticles.jsp").forward(req, resp);
     }
 }

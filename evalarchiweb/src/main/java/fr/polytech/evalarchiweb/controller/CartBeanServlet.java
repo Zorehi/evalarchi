@@ -1,7 +1,5 @@
-package fr.polytech.Servlet;
+package fr.polytech.evalarchiweb.controller;
 
-import fr.polytech.business.UserBusiness;
-import fr.polytech.business.UserBusinessImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,13 +8,12 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name="Login", urlPatterns = {"/login"})
-public class LoginServlet extends HttpServlet {
-    private UserBusiness userBusiness;
-    
+@WebServlet(name="Cart", urlPatterns = {"/cartbean"})
+public class CartBeanServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        req.getRequestDispatcher("cartbean.jsp").forward(req, resp);
     }
 
     @Override
