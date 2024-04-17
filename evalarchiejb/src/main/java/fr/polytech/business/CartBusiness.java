@@ -4,12 +4,14 @@ import fr.polytech.model.ArticleBean;
 import fr.polytech.model.CartBean;
 import jakarta.ejb.Local;
 
+import java.util.List;
+
 @Local
 public interface CartBusiness {
-    public double computePrice(CartBean cart);
+    public Double computePrice(CartBean cart);
 
-    public  void addItem(CartBean cart, ArticleBean article);
-    public  void popItem(CartBean cart, ArticleBean article);
+    public  void addItem(CartBean cart, int id);
+    public  void popItem(CartBean cart, int id);
 
     public CartBean BuildCart();
 

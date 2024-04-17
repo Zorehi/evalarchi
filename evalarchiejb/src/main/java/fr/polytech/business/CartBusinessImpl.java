@@ -3,10 +3,12 @@ package fr.polytech.business;
 import fr.polytech.dao.ArticleDAO;
 import fr.polytech.dao.ArticleDAOImpl;
 import fr.polytech.model.ArticleBean;
+import fr.polytech.model.ArticleTaken;
 import fr.polytech.model.CartBean;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 
+import java.util.List;
 import java.util.Map;
 
 @Stateless
@@ -18,37 +20,33 @@ public class CartBusinessImpl implements CartBusiness {
         this.articleDAO = new ArticleDAOImpl();
     }
 
-    public double computePrice(CartBean cart){
+    public Double computePrice(CartBean cart){
         double prixTotal = 0.0;
-        for (Map.Entry<ArticleBean, Integer> entry : cart.getCart().entrySet()) {
-            ArticleBean article = entry.getKey();
-            int quantite = entry.getValue();
-            prixTotal += article.getPrice() * quantite;
-        }
+         for(ArticleTaken articleTaken : cart.getCart()){
+             prixTotal += articleTaken.getArticle().getPrice()*articleTaken.getNbTaken();
+         }
         return prixTotal;
     }
 
     @Override
-    public void addItem(CartBean cart, ArticleBean article) {
-        for (Map.Entry<ArticleBean, Integer> entry : cart.getCart().entrySet()) {
-            ArticleBean articleList = entry.getKey();
-            if(article.getId().equals(articleList.getId())){
-                if(article.getNbRestant() > 0 ) {
-                    article.setNbRestant(article.getNbRestant() - 1);
-                    entry.setValue(entry.getValue() + 1);
+    public void addItem(CartBean cart, int id) {
+        for(ArticleTaken articleTaken : cart.getCart()){
+            if(articleTaken.getArticle().getId() == id ){
+                if (articleTaken.getArticle().getNbRestant() >0){
+                    articleTaken.getArticle().setNbRestant(articleTaken.getArticle().getNbRestant()-1);
+                    articleTaken.setNbTaken(articleTaken.getNbTaken()+1);
                 }
             }
         }
     }
 
     @Override
-    public void popItem(CartBean cart, ArticleBean article) {
-        for (Map.Entry<ArticleBean, Integer> entry : cart.getCart().entrySet()) {
-            ArticleBean articleList = entry.getKey();
-            if(article.getId().equals(articleList.getId())){
-                if(entry.getValue() > 0 ) {
-                    article.setNbRestant(article.getNbRestant() + 1);
-                    entry.setValue(entry.getValue() - 1);
+    public void popItem(CartBean cart, int id) {
+        for(ArticleTaken articleTaken : cart.getCart()){
+            if(articleTaken.getArticle().getId() == id ){
+                if (articleTaken.getNbTaken() >0){
+                    articleTaken.getArticle().setNbRestant(articleTaken.getArticle().getNbRestant()+1);
+                    articleTaken.setNbTaken(articleTaken.getNbTaken()-1);
                 }
             }
         }
@@ -58,7 +56,10 @@ public class CartBusinessImpl implements CartBusiness {
     public CartBean BuildCart() {
         CartBean cart = new CartBean();
         for(ArticleBean article : articleDAO.getListArticle()){
-            cart.getCart().put(article,0);
+            ArticleTaken articleTaken = new ArticleTaken();
+            articleTaken.setArticle(article);
+            articleTaken.setNbTaken(0);
+            cart.getCart().add(articleTaken);
         }
         return cart;
     }
