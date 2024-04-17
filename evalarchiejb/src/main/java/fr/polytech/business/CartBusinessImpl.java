@@ -5,6 +5,7 @@ import fr.polytech.model.ArticleBean;
 import fr.polytech.model.CartBean;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class CartBusinessImpl implements CartBusiness {
     private final ArticleDAO articleDAO;
@@ -27,7 +28,7 @@ public class CartBusinessImpl implements CartBusiness {
     public void addItem(CartBean cart, ArticleBean article) {
         for (Map.Entry<ArticleBean, Integer> entry : cart.getContenuPanier().entrySet()) {
             ArticleBean articleList = entry.getKey();
-            if(article.getId() == articleList.getId()){
+            if(article.getId().equals(articleList.getId())){
                 if(article.getNbRestant() > 0 ) {
                     article.setNbRestant(article.getNbRestant() - 1);
                     entry.setValue(entry.getValue() + 1);
@@ -40,7 +41,7 @@ public class CartBusinessImpl implements CartBusiness {
     public void popItem(CartBean cart, ArticleBean article) {
         for (Map.Entry<ArticleBean, Integer> entry : cart.getContenuPanier().entrySet()) {
             ArticleBean articleList = entry.getKey();
-            if(article.getId() == articleList.getId()){
+            if(article.getId().equals(articleList.getId())){
                 if(entry.getValue() > 0 ) {
                     article.setNbRestant(article.getNbRestant() + 1);
                     entry.setValue(entry.getValue() - 1);
