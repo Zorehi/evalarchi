@@ -32,9 +32,8 @@ public class CartBusinessImpl implements CartBusiness {
     public void addItem(CartBean cart, int id) {
         for(ArticleTaken articleTaken : cart.getCart()){
             if(articleTaken.getArticle().getId() == id ){
-                if (articleTaken.getArticle().getNbRestant() >0){
-                    articleTaken.getArticle().setNbRestant(articleTaken.getArticle().getNbRestant()-1);
-                    articleTaken.setNbTaken(articleTaken.getNbTaken()+1);
+                if (articleTaken.getArticle().getNbRestant() - articleTaken.getNbTaken() > 0){
+                    articleTaken.setNbTaken(articleTaken.getNbTaken() + 1);
                 }
             }
         }
@@ -44,9 +43,8 @@ public class CartBusinessImpl implements CartBusiness {
     public void popItem(CartBean cart, int id) {
         for(ArticleTaken articleTaken : cart.getCart()){
             if(articleTaken.getArticle().getId() == id ){
-                if (articleTaken.getNbTaken() >0){
-                    articleTaken.getArticle().setNbRestant(articleTaken.getArticle().getNbRestant()+1);
-                    articleTaken.setNbTaken(articleTaken.getNbTaken()-1);
+                if (articleTaken.getNbTaken() > 0) {
+                    articleTaken.setNbTaken(articleTaken.getNbTaken() - 1);
                 }
             }
         }

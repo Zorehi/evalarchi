@@ -1,12 +1,17 @@
 package fr.polytech.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartBean implements Serializable {
     // Utilisation d'une Map pour stocker les ArticleBeans avec leur quantité respective
     private List<ArticleTaken> cart;
     private Double totalPrice;
+
+    public CartBean() {
+        cart = new ArrayList<ArticleTaken>();
+    }
 
     // Méthode pour obtenir la liste des ArticleBeans dans le panier avec leur quantité
     public List<ArticleTaken> getCart() {

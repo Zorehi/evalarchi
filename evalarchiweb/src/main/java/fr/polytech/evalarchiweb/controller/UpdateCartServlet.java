@@ -33,19 +33,18 @@ public class UpdateCartServlet extends HttpServlet {
         String login = (String)session.getAttribute("login");
         if(login == null) resp.sendRedirect("connexion");
 
-
         CartBean cart = (CartBean) session.getAttribute("CART");
-        
-        ArticleBean articleBean = articleBusiness.findArticleById(idArticle);
+        Integer id = Integer.parseInt(req.getParameter("article"));
+
         // Récupérer l'action de l'utilisateur (ajouter ou retirer)
         String action = req.getRequestURI(); // Vous devrez peut-être ajuster cela en fonction de la structure de votre URL
 
         if (action.endsWith("ajouterArticleAuPanier"))
         {
-            cartBusiness.addItem(cart, idArticle);
+            cartBusiness.addItem(cart, id);
         } else if (action.endsWith("retirerArticleDuPanier"))
         {
-            cartBusiness.popItem(cart, idArticle);
+            cartBusiness.popItem(cart, id);
         }
 
         // Mettre à jour le panier dans la session

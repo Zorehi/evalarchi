@@ -20,17 +20,24 @@
                 <th>Quantité</th>
             </tr>
             <c:forEach items="${requestScope.CART}" var="result">
-                <tr>
-                    <td>${result.key.name}</td>
-                    <td>${result.key.price}</td>
-                    <td>${result.value}</td>
-                </tr>
+                <c:if test="${result.nbTaken > 0}">
+                    <tr>
+                        <td>${result.article.name}</td>
+                        <td>${result.article.price}</td>
+                        <td>${result.nbTaken}</td>
+                    </tr>
+                </c:if>
             </c:forEach>
         </table>
+        Prix total : ${requestScope.TOTALPRICE}
     </fieldset>
 
     <div style="margin-top: 10px">
-        <button>Retour</button>
+        <button>Payer</button>
     </div>
+
+    <form style="margin-top: 10px" action="listarticles" method="get">
+        <button type="submit">Retour</button>
+    </form>
 </body>
 </html>

@@ -1,12 +1,7 @@
 package fr.polytech.evalarchiweb.controller;
 
 import fr.polytech.business.ArticleBusiness;
-import fr.polytech.business.ArticleBusinessImpl;
 import fr.polytech.business.CartBusiness;
-import fr.polytech.business.CartBusinessImpl;
-import fr.polytech.dao.ArticleDAO;
-import fr.polytech.dao.ArticleDAOImpl;
-import fr.polytech.model.ArticleBean;
 import fr.polytech.model.CartBean;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
@@ -17,7 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name="ListArticles", urlPatterns = {"/listarticles"})
 public class ArticlesListServlet extends HttpServlet {
@@ -36,14 +30,17 @@ public class ArticlesListServlet extends HttpServlet {
         if(login == null) resp.sendRedirect("connexion");
 
         CartBean cartBean = (CartBean) session.getAttribute("CART");
-        if (cartBean== null){
+        if (cartBean == null){
             cartBean = cartBusiness.BuildCart();
         }
         session.setAttribute("CART",cartBean);
-        req.setAttribute("CART", cartBean);
+        req.setAttribute("ARTICLES_TAKEN", cartBean.getCart());
 
         req.getRequestDispatcher("listarticles.jsp").forward(req, resp);
     }
 
-
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.sendRedirect("cartbean");
+    }
 }
