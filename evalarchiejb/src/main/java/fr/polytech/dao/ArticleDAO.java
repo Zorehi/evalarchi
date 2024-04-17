@@ -7,4 +7,6 @@ import java.util.List;
 public interface ArticleDAO {
 
     public List<ArticleBean> getListArticle();
+
+    public ArticleBean findArticleById(int id);
 }

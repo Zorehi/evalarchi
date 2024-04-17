@@ -8,8 +8,8 @@ import jakarta.ejb.Local;
 public interface CartBusiness {
     public double computePrice(CartBean cart);
 
-    public void addItem(CartBean cart, ArticleBean article);
-    public void popItem(CartBean cart, ArticleBean article);
+    public  void addItem(CartBean cart, ArticleBean article);
+    public  void popItem(CartBean cart, ArticleBean article);
 
     public CartBean BuildCart();
 
