@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name="UpdateCartServlet", urlPatterns = {"/ajouterArticleAuPanier", "/retirerArticleDuPanier"})
 public class UpdateCartServlet extends HttpServlet {
@@ -26,22 +27,25 @@ public class UpdateCartServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Récupérer le panier depuis la session
+
+        //Test de la connexion
         HttpSession session = req.getSession();
         String login = (String)session.getAttribute("login");
         if(login == null) resp.sendRedirect("connexion");
+
+
         CartBean cart = (CartBean) session.getAttribute("CART");
-        int idArticle =  Integer.parseInt(req.getParameter("article"));
+        
         ArticleBean articleBean = articleBusiness.findArticleById(idArticle);
         // Récupérer l'action de l'utilisateur (ajouter ou retirer)
         String action = req.getRequestURI(); // Vous devrez peut-être ajuster cela en fonction de la structure de votre URL
 
         if (action.endsWith("ajouterArticleAuPanier"))
         {
-            cartBusiness.addItem(cart, articleBean);
+            cartBusiness.addItem(cart, idArticle);
         } else if (action.endsWith("retirerArticleDuPanier"))
         {
-            cartBusiness.popItem(cart, articleBean);
+            cartBusiness.popItem(cart, idArticle);
         }
 
         // Mettre à jour le panier dans la session

@@ -35,12 +35,12 @@ public class ArticlesListServlet extends HttpServlet {
         String login = (String)session.getAttribute("login");
         if(login == null) resp.sendRedirect("connexion");
 
-
-        CartBean cart = cartBusiness.BuildCart();
-        session.setAttribute("CART",cart);
-        List<ArticleBean> articleBeanList = articleBusiness.getAllArticles();
-        req.setAttribute("CART", cart);
-        req.setAttribute("ARTICLE", articleBeanList);
+        CartBean cartBean = (CartBean) session.getAttribute("CART");
+        if (cartBean== null){
+            cartBean = cartBusiness.BuildCart();
+        }
+        session.setAttribute("CART",cartBean);
+        req.setAttribute("CART", cartBean);
 
         req.getRequestDispatcher("listarticles.jsp").forward(req, resp);
     }
