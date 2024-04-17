@@ -1,6 +1,9 @@
 package fr.polytech.dao;
 
-public interface UserDAO {
-    public boolean login(String login , String password);
+import fr.polytech.model.UserBean;
 
+public interface UserDAO {
+    boolean login(String login , String password);
+
+    UserBean getUser(String login);
 }
