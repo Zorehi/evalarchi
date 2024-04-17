@@ -20,7 +20,7 @@ public class CartBusinessImpl implements CartBusiness {
 
     public double computePrice(CartBean cart){
         double prixTotal = 0.0;
-        for (Map.Entry<ArticleBean, Integer> entry : cart.getContenuPanier().entrySet()) {
+        for (Map.Entry<ArticleBean, Integer> entry : cart.getCart().entrySet()) {
             ArticleBean article = entry.getKey();
             int quantite = entry.getValue();
             prixTotal += article.getPrice() * quantite;
@@ -30,7 +30,7 @@ public class CartBusinessImpl implements CartBusiness {
 
     @Override
     public void addItem(CartBean cart, ArticleBean article) {
-        for (Map.Entry<ArticleBean, Integer> entry : cart.getContenuPanier().entrySet()) {
+        for (Map.Entry<ArticleBean, Integer> entry : cart.getCart().entrySet()) {
             ArticleBean articleList = entry.getKey();
             if(article.getId().equals(articleList.getId())){
                 if(article.getNbRestant() > 0 ) {
@@ -43,7 +43,7 @@ public class CartBusinessImpl implements CartBusiness {
 
     @Override
     public void popItem(CartBean cart, ArticleBean article) {
-        for (Map.Entry<ArticleBean, Integer> entry : cart.getContenuPanier().entrySet()) {
+        for (Map.Entry<ArticleBean, Integer> entry : cart.getCart().entrySet()) {
             ArticleBean articleList = entry.getKey();
             if(article.getId().equals(articleList.getId())){
                 if(entry.getValue() > 0 ) {
@@ -58,7 +58,7 @@ public class CartBusinessImpl implements CartBusiness {
     public CartBean BuildCart() {
         CartBean cart = new CartBean();
         for(ArticleBean article : articleDAO.getListArticle()){
-            cart.getContenuPanier().put(article,0);
+            cart.getCart().put(article,0);
         }
         return cart;
     }
