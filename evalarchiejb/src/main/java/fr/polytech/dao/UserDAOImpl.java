@@ -31,5 +31,14 @@ public class UserDAOImpl implements UserDAO {
         }
         return response;
     }
+
+    @Override
+    public UserBean getUser(String login) {
+        TypedQuery<UserBean> query = em.createQuery(
+                "SELECT u FROM UserBean u WHERE u.login = :login", UserBean.class);
+        query.setParameter("login", login);
+        List<UserBean> userList = query.getResultList();
+        return userList.isEmpty() ? null : userList.get(0);
+    }
 }
 
