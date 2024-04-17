@@ -8,7 +8,7 @@ import javax.naming.NamingException;
 
 public class ConnectionDB {
 
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/gestionnotes";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/evalarchi";
     private static final String DB_USER = "root";
     private static final String DB_PWD = "password";
 
