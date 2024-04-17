@@ -1,4 +1,4 @@
-package fr.polytech.evalarchi.model;
+package fr.polytech.model;
 
 import java.io.Serializable;
 

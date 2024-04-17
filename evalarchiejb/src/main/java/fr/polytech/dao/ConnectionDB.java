@@ -1,4 +1,4 @@
-package fr.polytech.evalarchi.dao;
+package fr.polytech.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

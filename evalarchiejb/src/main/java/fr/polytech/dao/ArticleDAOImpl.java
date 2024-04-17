@@ -1,4 +1,4 @@
-package fr.polytech.evalarchi.dao;
+package fr.polytech.dao;
 
 import fr.polytech.evalarchi.model.ArticleBean;
 import jakarta.ejb.Stateless;
@@ -9,7 +9,7 @@ import jakarta.persistence.Query;
 import java.util.List;
 
 @Stateless
-public class ArticleDAOImpl implements ArticleDAO {
+public class ArticleDAOImpl implements fr.polytech.evalarchi.dao.ArticleDAO {
 
     // L'objet EntityManager qui va permettre d'effectuer les requêtes en BDD.
     @PersistenceContext(unitName = "GestionNotes")
