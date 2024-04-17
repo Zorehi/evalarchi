@@ -12,8 +12,8 @@
 
   <modules>
     <module>evalarchiear</module>
-    <module>evalarchiweb</module>
     <module>evalarchiejb</module>
+    <module>evalarchiweb</module>
   </modules>
 
   <properties>
