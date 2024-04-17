@@ -28,12 +28,13 @@ public class ConnexionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
 
-        String login = (String)req.getAttribute("login");
-        String password = (String)req.getAttribute("password");
+        String login = req.getParameter("login");
+        String password = req.getParameter("password");
 
         if (userBusiness.login(login, password)) {
             session.setAttribute("login", login);
             resp.sendRedirect("listarticles");
+            return;
         }
 
         req.setAttribute("FAILED", true);

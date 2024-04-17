@@ -24,8 +24,9 @@ public class UserDAOImpl implements UserDAO {
         query.setParameter("login", login);
         List<UserBean> userList = query.getResultList();
         for(UserBean user : userList){
-            if(user.getPassword() == password) {
+            if (user.getPassword().equals(password)) {
                 response = true;
+                break;
             }
         }
         return response;

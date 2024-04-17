@@ -4,9 +4,6 @@
     <persistence-unit name="Evalarchi" transaction-type="JTA">
         <jta-data-source>java:/MySqlEvalArchi</jta-data-source>
         <properties>
-            <property
-                    name="jakarta.persistence.schema-generation.database.action"
-                    value="drop-and-create" />
         </properties>
     </persistence-unit>
 </persistence>
