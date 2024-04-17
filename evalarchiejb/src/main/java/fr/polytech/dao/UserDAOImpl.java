@@ -3,7 +3,6 @@ package fr.polytech.dao;
 import fr.polytech.model.UserBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 

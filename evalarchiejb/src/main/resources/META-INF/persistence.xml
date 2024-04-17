@@ -3,7 +3,5 @@
     <!-- Define Persistence Unit -->
     <persistence-unit name="Evalarchi" transaction-type="JTA">
         <jta-data-source>java:/MySqlEvalArchi</jta-data-source>
-        <properties>
-        </properties>
     </persistence-unit>
 </persistence>
